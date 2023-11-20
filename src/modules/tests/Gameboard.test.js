@@ -68,3 +68,33 @@ test("missed shot on 1,1", () => {
 
   expect(gameboard.missedShots).toStrictEqual([[1, 1]]);
 });
+test("not sunk", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  gameboard.receiveAttack(1, 1);
+
+  expect(gameboard.allShipsSunk()).toBe(false);
+});
+
+test("all sunk n=1", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(1);
+  gameboard.placeShip(0, 0, ship);
+  gameboard.receiveAttack(0, 0);
+
+  expect(gameboard.allShipsSunk()).toBe(true);
+});
+
+test("all sunk n=2", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(1);
+  const ship2 = new Ship(2);
+  gameboard.placeShip(0, 0, ship);
+  gameboard.receiveAttack(0, 0);
+
+  gameboard.placeShip(1, 1, ship);
+  gameboard.receiveAttack(1, 1);
+  gameboard.receiveAttack(1, 2);
+  expect(gameboard.allShipsSunk()).toBe(true);
+});

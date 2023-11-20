@@ -20,6 +20,9 @@ export default class GameBoard {
   getBoard() {
     return this.board;
   }
+  getMissedShots() {
+    return this.missedShots;
+  }
   createShipFleet() {
     const ships = [];
     const sizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
@@ -54,5 +57,18 @@ export default class GameBoard {
     if (this.board[x][y].shipName != undefined) {
       this.board[x][y].shipName.hit();
     } else this.missedShots.push([x, y]);
+  }
+  allShipsSunk() {
+    let key = true;
+    this.board.forEach((item) => {
+      item.forEach((element) => {
+        if (element.shipName) {
+          if (element.shipName.isSunk() == false) {
+            key = false;
+          }
+        }
+      });
+    });
+    return key;
   }
 }
