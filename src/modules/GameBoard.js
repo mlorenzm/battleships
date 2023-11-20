@@ -3,6 +3,7 @@ export default class GameBoard {
   constructor() {
     this.board = this.createBoard();
     this.ships = this.createShipFleet();
+    this.missedShots = [];
   }
   createBoard() {
     let array = [];
@@ -42,12 +43,16 @@ export default class GameBoard {
       return false;
     } else {
       for (let i = y; i < y + len; i++) {
-        if (this.board[i][x].shipName != undefined) {
+        if (this.board[x][i].shipName != undefined) {
           return false;
         }
       }
       return true;
     }
   }
-  receiveAttack(x, y) {}
+  receiveAttack(x, y) {
+    if (this.board[x][y].shipName != undefined) {
+      this.board[x][y].shipName.hit();
+    } else this.missedShots.push([x, y]);
+  }
 }

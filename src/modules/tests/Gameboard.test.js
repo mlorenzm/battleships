@@ -44,3 +44,27 @@ test("there is no ship placed on pos 0,4", () => {
   gameboard.placeShip(0, 0, ship);
   expect(gameboard.board[0][4].shipName).toBe(undefined);
 });
+test("there is a ship being hit on 0,0", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  gameboard.receiveAttack(0, 0);
+  expect(gameboard.board[0][0].shipName.hits).toBe(1);
+});
+test("there is a ship being 2hitted on 0,0", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  gameboard.receiveAttack(0, 0);
+  gameboard.receiveAttack(0, 1);
+  expect(gameboard.board[0][0].shipName.hits).toBe(2);
+});
+
+test("missed shot on 1,1", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  gameboard.receiveAttack(1, 1);
+
+  expect(gameboard.missedShots).toStrictEqual([[1, 1]]);
+});
