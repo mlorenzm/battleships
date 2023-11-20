@@ -16,6 +16,9 @@ export default class GameBoard {
     }
     return array;
   }
+  getBoard() {
+    return this.board;
+  }
   createShipFleet() {
     const ships = [];
     const sizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
@@ -26,12 +29,11 @@ export default class GameBoard {
     return ships;
   }
   placeShip(x, y, ship) {
-    const len = ship.length;
     // x,y is the coordinate for the head of the ship. It places all ships vertically
-    if (this.placementIsLegal(x, y, len)) {
-      for (let i = 0; i < len; i++) {
-        this.gameBoardArray[y + i][x].shipName = ship;
-        this.gameBoardArray[y + i][x].shipIndex = i;
+    if (this.placementIsLegal(x, y, ship.getLength())) {
+      for (let i = 0; i < ship.getLength(); i++) {
+        this.board[x][y + i].shipIndex = i;
+        this.board[x][y + i].shipName = ship;
       }
     }
   }
@@ -40,7 +42,7 @@ export default class GameBoard {
       return false;
     } else {
       for (let i = y; i < y + len; i++) {
-        if (this.gameBoardArray[i][x].shipName != undefined) {
+        if (this.board[i][x].shipName != undefined) {
           return false;
         }
       }

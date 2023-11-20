@@ -3,31 +3,19 @@ import Ship from "../Ship.js";
 
 test("the gameboard.board is a 2d array of size 10 null", () => {
   const gameboard = new GameBoard();
-  let arr = [];
-  let size = 10;
-  for (let i = 0; i < size; i++) {
-    arr[i] = [];
-    for (let j = 0; j < size; j++) {
-      arr[i][j] = null;
+  let array = [];
+  let arrayItem = [];
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      arrayItem.push({ shipName: undefined, shipIndex: undefined });
     }
+    array.push(arrayItem);
+    arrayItem = [];
   }
-  expect(gameboard.board).toStrictEqual(arr);
+  expect(gameboard.getBoard()).toStrictEqual(array);
 });
 
-test("the gameboard.board is a 2d array of size 10 null", () => {
-  const gameboard = new GameBoard();
-  let arr = [];
-  let size = 10;
-  for (let i = 0; i < size; i++) {
-    arr[i] = [];
-    for (let j = 0; j < size; j++) {
-      arr[i][j] = null;
-    }
-  }
-  expect(gameboard.board).toStrictEqual(arr);
-});
-
-test("there is an array of ships created", () => {
+test("there is a fleet of ships created", () => {
   const gameboard = new GameBoard();
   const ships = [];
   const sizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
@@ -35,4 +23,24 @@ test("there is an array of ships created", () => {
     ships.push(new Ship(sizes[i]));
   }
   expect(gameboard.createShipFleet()).toStrictEqual(ships);
+});
+
+test("there is a ship placed on pos 0,0", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  expect(gameboard.board[0][0].shipName).toBe(ship);
+});
+
+test("there is a ship placed on pos 0,2 (length 3)", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  expect(gameboard.board[0][2].shipName).toBe(ship);
+});
+test("there is no ship placed on pos 0,4", () => {
+  const gameboard = new GameBoard();
+  const ship = new Ship(3);
+  gameboard.placeShip(0, 0, ship);
+  expect(gameboard.board[0][4].shipName).toBe(undefined);
 });

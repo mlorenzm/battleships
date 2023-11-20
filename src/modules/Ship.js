@@ -15,4 +15,7 @@ export default class Ship {
       return false;
     }
   }
+  getLength() {
+    return this.length;
+  }
 }
