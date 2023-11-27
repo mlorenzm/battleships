@@ -18,10 +18,25 @@ const generateGrid = (x) => {
   }
 };
 
-const gameLoop = () => {
-  const player = new Player();
-  const computer = new Computer();
+const populateGameboard = (character) => {
+  const fleet = character.board.createShipFleet();
+  while (fleet.length > 0) {
+    const ship = fleet.shift();
+    console.log(ship);
+    let a = 0;
+    let b = 0;
+    character.board.placeShip(a, b, ship);
+    b++;
+  }
 };
 
-generateGrid("player");
-generateGrid("computer");
+const gameLoop = () => {
+  const player = new Player();
+  populateGameboard(player);
+  const computer = new Computer();
+  generateGrid("player");
+  generateGrid("computer");
+  console.log(player.getBoard());
+};
+
+gameLoop();
