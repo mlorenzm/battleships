@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1 1 auto;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+
+  div {
+    border: 1px solid rgb(42, 42, 42);
+    width: 2rem;
+    height: 2rem;
+    &:hover {
+      background-color: #b8b8b8;
+      cursor: pointer;
+    }
+  }
+}
+
+.title {
+  font-size: 3rem;
+}
