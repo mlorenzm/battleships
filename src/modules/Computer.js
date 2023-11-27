@@ -1,8 +1,9 @@
 import Player from "./Player";
-export class Computer extends Player {
+export default class Computer extends Player {
   constructor() {
-    this.turn = false;
+    super();
     this.attacks = [];
+    this.turn = false;
   }
   randomAttack(enemyPlayer) {
     const x = Math.floor(Math.random() * 10);

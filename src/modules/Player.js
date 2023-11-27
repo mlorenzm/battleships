@@ -1,5 +1,5 @@
-import GameBoard from "../GameBoard";
-import Ship from "../Ship";
+import GameBoard from "./GameBoard";
+import Ship from "./Ship";
 export default class Player {
   constructor() {
     this.turn = true;
