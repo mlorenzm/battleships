@@ -20,12 +20,12 @@ const generateGrid = (x) => {
 
 const populateGameboard = (character) => {
   const fleet = character.board.createShipFleet();
+  let b = 0;
   while (fleet.length > 0) {
     const ship = fleet.shift();
-    console.log(ship);
     let a = 0;
-    let b = 0;
     character.board.placeShip(a, b, ship);
+    console.log(b);
     b++;
   }
 };
