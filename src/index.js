@@ -8,8 +8,8 @@ const generateGrid = (x) => {
   for (let i = 0; i <= 9; i++) {
     for (let j = 0; j <= 9; j++) {
       const cell = document.createElement("div");
-      cell.dataset.x = i;
-      cell.dataset.y = j;
+      cell.dataset.x = j;
+      cell.dataset.y = i;
       cell.addEventListener("click", () => {
         return [parseInt(cell.dataset.x), parseInt(cell.dataset.y)];
       });
@@ -30,13 +30,18 @@ const populateGameboard = (character) => {
   }
 };
 
+const renderGameBoard = (character) => {
+  const element = document.getElementById(character);
+  console.log(element);
+};
+
 const gameLoop = () => {
   const player = new Player();
   populateGameboard(player);
   const computer = new Computer();
   generateGrid("player");
   generateGrid("computer");
-  console.log(player.getBoard());
+  renderGameBoard("player");
 };
 
 gameLoop();
