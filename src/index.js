@@ -18,6 +18,7 @@ const generateGrid = (x) => {
   }
 };
 
+// This is a helper function in development, please ignore
 const populateGameboard = (character) => {
   const fleet = character.board.createShipFleet();
   let b = 0;
@@ -25,14 +26,30 @@ const populateGameboard = (character) => {
     const ship = fleet.shift();
     let a = 0;
     character.board.placeShip(a, b, ship);
-    console.log(b);
     b++;
   }
 };
 
 const renderGameBoard = (character) => {
-  const element = document.getElementById(character);
-  console.log(element);
+  let element;
+  if (Player.prototype.isPrototypeOf(character)) {
+    element = document.getElementById("player");
+  } else {
+    element = document.getElementById("computer");
+  }
+  const gameBoard = character.board.board;
+  for (let i = 0; i < gameBoard.length; i++) {
+    for (let j = 0; j < gameBoard.length; j++) {
+      if (gameBoard[i][j].shipName !== undefined) {
+        var cellElement = element.querySelector(
+          `[data-x="${i}"][data-y="${j}"]`
+        );
+        // Set the color for cells with a ship
+        cellElement.style.borderColor = "blue";
+        cellElement.style.backgroundColor = "#2196F3";
+      }
+    }
+  }
 };
 
 const gameLoop = () => {
@@ -41,7 +58,8 @@ const gameLoop = () => {
   const computer = new Computer();
   generateGrid("player");
   generateGrid("computer");
-  renderGameBoard("player");
+  console.log(player.board.board);
+  renderGameBoard(player);
 };
 
 gameLoop();
