@@ -5,7 +5,7 @@ import Computer from "./modules/Computer";
 import Ship from "./modules/Ship";
 
 const generateGrid = (x) => {
-  const element = document.getElementById(x);
+  const element = document.getElementById(`${x}-board`);
   for (let i = 0; i <= 9; i++) {
     for (let j = 0; j <= 9; j++) {
       const cell = document.createElement("div");
@@ -41,9 +41,9 @@ const populateGameboard = (character) => {
 const renderGameBoard = (character) => {
   let element;
   if (Player.prototype.isPrototypeOf(character)) {
-    element = document.getElementById("player");
+    element = document.getElementById("player-board");
   } else {
-    element = document.getElementById("computer");
+    element = document.getElementById("computer-board");
   }
   const gameBoard = character.board.board;
   for (let i = 0; i < gameBoard.length; i++) {
@@ -64,10 +64,10 @@ const gameLoop = () => {
   const player = new Player();
   populateGameboard(player);
   const computer = new Computer();
+  populateGameboard(computer);
   generateGrid("player");
   generateGrid("computer");
-  console.log(player.board.board);
   renderGameBoard(player);
+  console.log(player);
 };
-
 gameLoop();
