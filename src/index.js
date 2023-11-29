@@ -19,6 +19,15 @@ const generateGrid = (x) => {
   }
 };
 
+const renderAttacks = (x) => {
+  const boardElement = document.getElementById(`${x}-board`);
+  boardElement.addEventListener("click", (e) => {
+    let x = e.target.dataset.x;
+    let y = e.target.dataset.y;
+    return [x, y];
+  });
+};
+
 // This is a helper function in development, please ignore
 const populateGameboard = (character) => {
   // const fleet = character.board.createShipFleet();
@@ -68,6 +77,13 @@ const gameLoop = () => {
   generateGrid("player");
   generateGrid("computer");
   renderGameBoard(player);
-  console.log(player);
+  renderAttacks("computer");
+
+  // while (
+  //   player.getTurn() &&
+  //   (!player.board.allShipsSunk() || !computer.board.allShipsSunk())
+  // ) {
+  //   computer.board.
+  // }
 };
 gameLoop();
