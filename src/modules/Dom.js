@@ -78,7 +78,19 @@ function fireTorpedo(cell, character, x, y, enemy) {
 
   enemy.randomAttack(character);
 
+  // PROBLEMATIC;
+  // console.log(character.board.board);
   renderGameBoard(character);
+}
+
+function switchTurns(character, enemy) {
+  character.toggleTurn();
+  enemy.toggleTurn();
+  if (character.getTurn()) {
+    console.log("character turn");
+  } else {
+    console.log("enemy turn");
+  }
 }
 
 export { generateGrids, renderGameBoard };
