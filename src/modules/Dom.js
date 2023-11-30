@@ -23,11 +23,14 @@ const generateGrids = (player, computer) => {
       cell.addEventListener(
         "click",
         function (e) {
-          fireTorpedo(player, e.target.dataset.x, e.target.dataset.y, computer);
+          fireTorpedo(
+            e.target,
+            player,
+            e.target.dataset.x,
+            e.target.dataset.y,
+            computer
+          );
           // e.target.classList.add("hit");
-          if (computer.board.board[i][j]) {
-            cell.classList.add("hit");
-          }
         },
         { once: true }
       );
@@ -36,6 +39,7 @@ const generateGrids = (player, computer) => {
     }
   }
 };
+
 const renderGameBoard = (character) => {
   let element;
   if (character.name == "player") {
@@ -54,20 +58,27 @@ const renderGameBoard = (character) => {
           cellElement.classList.add("sunk");
         }
 
-        // Set the color for cells with a ships
+        // if (character.name == "player")  COMMENT THIS OUT
         cellElement.classList.add("taken");
-
-        // add status for hit and sunk ships?
+        // }
       }
     }
   }
 };
 
-function fireTorpedo(character, x, y, enemy) {
-  if (character.getTurn()) {
-    enemy.board.receiveAttack(x, y);
-    renderGameBoard(enemy);
+function fireTorpedo(cell, character, x, y, enemy) {
+  enemy.board.receiveAttack(x, y);
+  if (enemy.board.board[x][y]) {
+    cell.classList.add("hit");
+  } else {
+    cell.classList.add("miss");
   }
+  switchTurns(character, enemy);
+  renderGameBoard(enemy);
+
+  enemy.randomAttack(character);
+
+  renderGameBoard(character);
 }
 
 export { generateGrids, renderGameBoard };
