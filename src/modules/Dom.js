@@ -8,11 +8,8 @@ const generateGrids = (player, computer) => {
     for (let j = 0; j <= 9; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell-element");
-      cell.dataset.x = j;
-      cell.dataset.y = i;
-      cell.addEventListener("click", (e) => {
-        // place ships?
-      });
+      cell.dataset.x = i;
+      cell.dataset.y = j;
       playerElement.appendChild(cell);
     }
   }
@@ -21,22 +18,21 @@ const generateGrids = (player, computer) => {
     for (let j = 0; j <= 9; j++) {
       const cell = document.createElement("div");
       cell.classList.add("cell-element");
-      cell.dataset.x = j;
-      cell.dataset.y = i;
+      cell.dataset.x = i;
+      cell.dataset.y = j;
       cell.addEventListener("click", (e) => {
-        if (!player.getTurn()) return;
-        else {
-          console.log(cell.dataset.y, cell.dataset.x);
-          console.log(computer.board.board[cell.dataset.y][cell.dataset.x]);
-        }
+        console.log(
+          computer.board.board[e.target.dataset.x][e.target.dataset.y],
+          computer.board.board
+        );
       });
+
       computerElement.appendChild(cell);
     }
   }
 };
 const renderGameBoard = (character) => {
   let element;
-  console.log(character.name);
   if (character.name == "player") {
     element = document.getElementById("player-board");
   } else {
