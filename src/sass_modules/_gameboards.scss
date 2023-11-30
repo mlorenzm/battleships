@@ -18,18 +18,27 @@
   grid-template-rows: repeat(10, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-
-  div {
-    border: 1px solid rgb(42, 42, 42);
-    width: 2rem;
-    height: 2rem;
-    &:hover {
-      background-color: #b8b8b8;
-      cursor: pointer;
-    }
+}
+.cell-element {
+  border: 1px solid rgb(42, 42, 42);
+  width: 2rem;
+  height: 2rem;
+  &:hover {
+    background-color: #b8b8b8;
+    cursor: pointer;
   }
 }
 
 .title {
   font-size: 3rem;
+}
+.taken {
+  border: 1px solid #145c97;
+  width: 2rem;
+  height: 2rem;
+  background-color: #2196f3;
+  &:hover {
+    cursor: default;
+    background-color: #2196f3;
+  }
 }

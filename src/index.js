@@ -9,23 +9,21 @@ const generateGrid = (x) => {
   for (let i = 0; i <= 9; i++) {
     for (let j = 0; j <= 9; j++) {
       const cell = document.createElement("div");
+      cell.classList.add("cell-element");
       cell.dataset.x = j;
       cell.dataset.y = i;
-      cell.addEventListener("click", () => {
-        return [parseInt(cell.dataset.x), parseInt(cell.dataset.y)];
+      cell.addEventListener("click", (e) => {
+        attackEvent(e.target, x);
       });
       element.appendChild(cell);
     }
   }
 };
 
-const renderAttacks = (x) => {
-  const boardElement = document.getElementById(`${x}-board`);
-  boardElement.addEventListener("click", (e) => {
-    let x = e.target.dataset.x;
-    let y = e.target.dataset.y;
-    return [x, y];
-  });
+const attackEvent = (element, player) => {
+  let x = element.getAttribute("data-x");
+  let y = element.getAttribute("data-y");
+  console.log(player);
 };
 
 // This is a helper function in development, please ignore
@@ -62,8 +60,7 @@ const renderGameBoard = (character) => {
           `[data-x="${i}"][data-y="${j}"]`
         );
         // Set the color for cells with a ship
-        cellElement.style.borderColor = "blue";
-        cellElement.style.backgroundColor = "#2196F3";
+        cellElement.classList.add("taken");
       }
     }
   }
@@ -77,7 +74,6 @@ const gameLoop = () => {
   generateGrid("player");
   generateGrid("computer");
   renderGameBoard(player);
-  renderAttacks("computer");
 
   // while (
   //   player.getTurn() &&
