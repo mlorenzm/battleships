@@ -25,6 +25,10 @@ const generateGrids = (player, computer) => {
       cell.dataset.y = i;
       cell.addEventListener("click", (e) => {
         if (!player.getTurn()) return;
+        else {
+          console.log(cell.dataset.y, cell.dataset.x);
+          console.log(computer.board.board[cell.dataset.y][cell.dataset.x]);
+        }
       });
       computerElement.appendChild(cell);
     }
@@ -47,10 +51,16 @@ const renderGameBoard = (character) => {
         );
         // Set the color for cells with a ships
         cellElement.classList.add("taken");
-        // console.log(cellElement);
+        // add status for hit and sunk ships?
       }
     }
   }
 };
+
+function attackEvent(x, y, enemyBoard) {
+  if (character.getTurn()) {
+    console.log(e.target);
+  }
+}
 
 export { generateGrids, renderGameBoard };

@@ -14,25 +14,6 @@ function initGame() {
   renderGameBoard(player);
 }
 
-// Dummy, in devel
-// populateGameboard = (character) => {
-//   // const fleet = character.board.createShipFleet();
-//   // let b = 0;
-//   // while (fleet.length > 0) {
-//   //   const ship = fleet.shift();
-//   //   let a = 0;
-//   //   character.board.placeShip(a, b, ship);
-//   //   b++;
-//   // }
-//   const ship = new Ship(2);
-//   const ship_3 = new Ship(3);
-
-//   character.board.placeShip(0, 0, ship);
-//   character.board.placeShip(3, 0, ship);
-//   character.board.placeShip(6, 2, ship);
-//   character.board.placeShip(3, 3, ship_3);
-// };
-
 // attackEvent = (element, player) => {
 //   let x = parseInt(element.getAttribute("data-x"));
 //   let y = parseInt(element.getAttribute("data-y"));
