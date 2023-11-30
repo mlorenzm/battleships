@@ -16,16 +16,5 @@ export default class Computer extends Player {
     this.attackEnemyBoard(a, b, enemyPlayer);
     // }
     this.attacks.push(array);
-    console.log(a, b);
-  }
-  inAttacks(singleArray, bidimensionalArray) {
-    if (this.attacks.length == 0) return;
-    else {
-      return bidimensionalArray.some(
-        (subArray) =>
-          subArray.length === singleArray.length &&
-          subArray.every((value, index) => value === singleArray[index])
-      );
-    }
   }
 }

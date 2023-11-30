@@ -26,8 +26,8 @@ const generateGrids = (player, computer) => {
           fireTorpedo(
             e.target,
             player,
-            e.target.dataset.x,
-            e.target.dataset.y,
+            parseInt(e.target.dataset.x),
+            parseInt(e.target.dataset.y),
             computer
           );
           // e.target.classList.add("hit");
@@ -50,15 +50,16 @@ const renderGameBoard = (character) => {
   const gameBoard = character.board.board;
   for (let i = 0; i < gameBoard.length; i++) {
     for (let j = 0; j < gameBoard.length; j++) {
+      let cellElement = element.querySelector(`[data-x="${i}"][data-y="${j}"]`);
+
+      // if (checkArray([i, j], character.board.getMissedShots())) {
+      //   cellElement.classList.add("miss");
+      // }
       if (gameBoard[i][j] !== undefined) {
-        let cellElement = element.querySelector(
-          `[data-x="${i}"][data-y="${j}"]`
-        );
         if (gameBoard[i][j].isSunk()) {
           cellElement.classList.add("sunk");
         }
-
-        // if (character.name == "player")  COMMENT THIS OUT
+        // if (character.name == "player") {
         cellElement.classList.add("taken");
         // }
       }
@@ -67,30 +68,37 @@ const renderGameBoard = (character) => {
 };
 
 function fireTorpedo(cell, character, x, y, enemy) {
+  // console.log([x, y]);
+  // console.log(enemy.board.getMissedShots());
   enemy.board.receiveAttack(x, y);
   if (enemy.board.board[x][y]) {
     cell.classList.add("hit");
-  } else {
+    console.log("hit");
+  }
+  if (checkArray([x, y], enemy.board.getMissedShots())) {
+    console.log("miss");
     cell.classList.add("miss");
   }
+
   switchTurns(character, enemy);
   renderGameBoard(enemy);
 
   enemy.randomAttack(character);
 
-  // PROBLEMATIC;
-  // console.log(character.board.board);
   renderGameBoard(character);
 }
 
 function switchTurns(character, enemy) {
   character.toggleTurn();
   enemy.toggleTurn();
-  if (character.getTurn()) {
-    console.log("character turn");
-  } else {
-    console.log("enemy turn");
-  }
+}
+
+function checkArray(singleArray, bidimensionalArray) {
+  return bidimensionalArray.some(
+    (subArray) =>
+      subArray.length === singleArray.length &&
+      subArray.every((value, index) => value === singleArray[index])
+  );
 }
 
 export { generateGrids, renderGameBoard };

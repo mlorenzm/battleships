@@ -5,6 +5,12 @@
   align-items: center;
   flex: 1 1 auto;
 }
+.miss {
+  border: 1px solid #343333;
+  width: 2rem;
+  height: 2rem;
+  background-color: #8e8e8e;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -16,8 +22,8 @@
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
 }
 .cell-element {
   border: 1px solid rgb(42, 42, 42);
@@ -49,11 +55,4 @@
   width: 2rem;
   height: 2rem;
   background-color: #362727;
-}
-
-.miss {
-  border: 1px solid #343333;
-  width: 2rem;
-  height: 2rem;
-  background-color: #8e8e8e;
 }
