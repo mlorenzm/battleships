@@ -4,6 +4,7 @@ export default class Computer extends Player {
     super();
     this.attacks = [];
     this.turn = false;
+    this.name = "computer";
   }
   randomAttack(enemyPlayer) {
     const x = Math.floor(Math.random() * 10);

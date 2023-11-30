@@ -1,14 +1,15 @@
 import "./style.scss";
 
-import Game from "./modules/Game";
-
+import { initGame, player, computer } from "./modules/Game";
+import Player from "./modules/Player";
 const init = () => {
-  const game = new Game();
-  game.populateGameboard(game.player);
-  game.populateGameboard(game.computer);
-  game.generateGrid("player");
-  game.generateGrid("computer");
-  game.renderGameBoard(game.player);
+  initGame();
+
+  // game.populateGameboard(game.player);
+  // game.populateGameboard(game.computer);
+  // game.generateGrid("player");
+  // game.generateGrid("computer");
+  // game.renderGameBoard(game.player);
 
   // while (
   //   player.getTurn() &&

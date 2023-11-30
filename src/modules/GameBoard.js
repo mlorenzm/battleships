@@ -25,7 +25,7 @@ export default class GameBoard {
   }
   createShipFleet() {
     const ships = [];
-    const sizes = [1, 1, 1, 1, 2, 2, 2, 3, 3, 4];
+    const sizes = [2, 2, 3, 3, 4, 5];
     for (let i = 0; i < sizes.length; i++) {
       const ship = new Ship(sizes[i]);
       ships.push(ship);
