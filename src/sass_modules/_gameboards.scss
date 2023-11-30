@@ -37,8 +37,16 @@
   width: 2rem;
   height: 2rem;
   background-color: #2196f3;
-  &:hover {
-    cursor: default;
-    background-color: #2196f3;
-  }
+}
+.hit {
+  border: 1px solid #971414;
+  width: 2rem;
+  height: 2rem;
+  background-color: #f32121;
+}
+.sunk {
+  border: 1px solid #250505;
+  width: 2rem;
+  height: 2rem;
+  background-color: #362727;
 }
