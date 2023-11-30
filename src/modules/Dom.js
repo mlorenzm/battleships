@@ -25,7 +25,7 @@ const generateGrids = (player, computer) => {
         function (e) {
           fireTorpedo(player, e.target.dataset.x, e.target.dataset.y, computer);
           // e.target.classList.add("hit");
-          if (computer.board.board[i][j].shipName) {
+          if (computer.board.board[i][j]) {
             cell.classList.add("hit");
           }
         },
@@ -46,11 +46,11 @@ const renderGameBoard = (character) => {
   const gameBoard = character.board.board;
   for (let i = 0; i < gameBoard.length; i++) {
     for (let j = 0; j < gameBoard.length; j++) {
-      if (gameBoard[i][j].shipName !== undefined) {
+      if (gameBoard[i][j] !== undefined) {
         let cellElement = element.querySelector(
           `[data-x="${i}"][data-y="${j}"]`
         );
-        if (gameBoard[i][j].shipName.isSunk()) {
+        if (gameBoard[i][j].isSunk()) {
           cellElement.classList.add("sunk");
         }
 
