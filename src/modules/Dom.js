@@ -59,6 +59,7 @@ const renderGameBoard = (character) => {
         if (gameBoard[i][j].isSunk()) {
           cellElement.classList.add("sunk");
         }
+
         // if (character.name == "player") {
         cellElement.classList.add("taken");
         // }
@@ -73,18 +74,26 @@ function fireTorpedo(cell, character, x, y, enemy) {
   enemy.board.receiveAttack(x, y);
   if (enemy.board.board[x][y]) {
     cell.classList.add("hit");
-    console.log("hit");
   }
   if (checkArray([x, y], enemy.board.getMissedShots())) {
-    console.log("miss");
     cell.classList.add("miss");
   }
 
   switchTurns(character, enemy);
   renderGameBoard(enemy);
 
-  enemy.randomAttack(character);
+  let randomcoord = enemy.randomAttack(character);
 
+  if (character.board.board[x][y]) {
+    cellElement.classList.add("hit");
+  }
+  if (checkArray([x, y], enemy.board.getMissedShots())) {
+    cellElement.classList.add("miss");
+  }
+
+  if (enemy.board.getMissedShots()) {
+    cell.classList.add("miss");
+  }
   renderGameBoard(character);
 }
 

@@ -16,5 +16,6 @@ export default class Computer extends Player {
     this.attackEnemyBoard(a, b, enemyPlayer);
     // }
     this.attacks.push(array);
+    return array;
   }
 }
