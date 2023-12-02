@@ -23,7 +23,7 @@ const generateGrids = (player, computer) => {
       cell.addEventListener(
         "click",
         function (e) {
-          fireTorpedo(
+          turnLoop(
             e.target,
             player,
             parseInt(e.target.dataset.x),
@@ -51,48 +51,37 @@ const renderGameBoard = (character) => {
   for (let i = 0; i < gameBoard.length; i++) {
     for (let j = 0; j < gameBoard.length; j++) {
       let cellElement = element.querySelector(`[data-x="${i}"][data-y="${j}"]`);
-
-      // if (checkArray([i, j], character.board.getMissedShots())) {
-      //   cellElement.classList.add("miss");
-      // }
       if (gameBoard[i][j] !== undefined) {
         if (gameBoard[i][j].isSunk()) {
           cellElement.classList.add("sunk");
-        }
-        if (checkArray(gameBoard[(i, j)], character.board.getMissedShots())) {
-          cellElement.classList.add("miss");
         }
         // if (character.name == "player") {
         cellElement.classList.add("taken");
         // }
       }
+
+      if (checkArray([i, j], character.board.getMissedShots())) {
+        cellElement.classList.add("miss");
+      }
     }
   }
 };
 
-function fireTorpedo(cell, character, x, y, enemy) {
+function turnLoop(cell, character, x, y, enemy) {
   // console.log([x, y]);
   // console.log(enemy.board.getMissedShots());
   enemy.board.receiveAttack(x, y);
   if (enemy.board.board[x][y]) {
     cell.classList.add("hit");
   }
-  // if (checkArray([x, y], enemy.board.getMissedShots())) {
-  //   cell.classList.add("miss");
-  // }
 
   switchTurns(character, enemy);
-  renderGameBoard(enemy);
 
   let randomcoord = enemy.randomAttack(character);
-
-  if (character.board.board[x][y]) {
-    cellElement.classList.add("hit");
-  }
-
-  if (enemy.board.getMissedShots()) {
-    cell.classList.add("miss");
-  }
+  // if (character.board.board[x][y]) {
+  //   cellElement.classList.add("hit");
+  // }
+  renderGameBoard(enemy);
   renderGameBoard(character);
 }
 
