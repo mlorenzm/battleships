@@ -59,7 +59,9 @@ const renderGameBoard = (character) => {
         if (gameBoard[i][j].isSunk()) {
           cellElement.classList.add("sunk");
         }
-
+        if (checkArray(gameBoard[(i, j)], character.board.getMissedShots())) {
+          cellElement.classList.add("miss");
+        }
         // if (character.name == "player") {
         cellElement.classList.add("taken");
         // }
@@ -75,9 +77,9 @@ function fireTorpedo(cell, character, x, y, enemy) {
   if (enemy.board.board[x][y]) {
     cell.classList.add("hit");
   }
-  if (checkArray([x, y], enemy.board.getMissedShots())) {
-    cell.classList.add("miss");
-  }
+  // if (checkArray([x, y], enemy.board.getMissedShots())) {
+  //   cell.classList.add("miss");
+  // }
 
   switchTurns(character, enemy);
   renderGameBoard(enemy);
@@ -86,9 +88,6 @@ function fireTorpedo(cell, character, x, y, enemy) {
 
   if (character.board.board[x][y]) {
     cellElement.classList.add("hit");
-  }
-  if (checkArray([x, y], enemy.board.getMissedShots())) {
-    cellElement.classList.add("miss");
   }
 
   if (enemy.board.getMissedShots()) {
