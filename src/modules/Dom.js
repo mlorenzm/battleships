@@ -1,10 +1,5 @@
 import Player from "./Player";
 import Computer from "./Computer";
-function decideWinner(computer) {
-  if (computer.gameboard.allShipsSunk()) {
-    return "computer";
-  } else return "player";
-}
 
 const generateGrids = (player, computer) => {
   //player
