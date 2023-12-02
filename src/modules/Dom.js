@@ -1,5 +1,10 @@
 import Player from "./Player";
 import Computer from "./Computer";
+function decideWinner(computer) {
+  if (computer.gameboard.allShipsSunk()) {
+    return "computer";
+  } else return "player";
+}
 
 const generateGrids = (player, computer) => {
   //player
@@ -59,7 +64,6 @@ const renderGameBoard = (character) => {
         cellElement.classList.add("taken");
         // }
       }
-
       if (checkArray([i, j], character.board.getMissedShots())) {
         cellElement.classList.add("miss");
       }
@@ -68,21 +72,27 @@ const renderGameBoard = (character) => {
 };
 
 function turnLoop(cell, character, x, y, enemy) {
-  // console.log([x, y]);
-  // console.log(enemy.board.getMissedShots());
   enemy.board.receiveAttack(x, y);
   if (enemy.board.board[x][y]) {
     cell.classList.add("hit");
   }
-
-  switchTurns(character, enemy);
-
-  let randomcoord = enemy.randomAttack(character);
-  // if (character.board.board[x][y]) {
-  //   cellElement.classList.add("hit");
-  // }
+  console.log(enemy.board.allShipsSunk());
   renderGameBoard(enemy);
-  renderGameBoard(character);
+  if (!enemy.board.allShipsSunk()) {
+    switchTurns(character, enemy);
+
+    let randomcoord = enemy.randomAttack(character);
+    console.log(randomcoord);
+    if (character.board.board[x][y]) {
+      document
+        .getElementById("player-board")
+        .querySelector(`[data-x="${x}"][data-y="${y}"]`)
+        .classList.add("hit");
+    }
+    renderGameBoard(character);
+  } else {
+    alert("game ended");
+  }
 }
 
 function switchTurns(character, enemy) {

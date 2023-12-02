@@ -9,14 +9,10 @@ function initGame() {
   computer = new Computer();
   computer.placeRandomFleet();
   player.placeRandomFleet();
+
   generateGrids(player, computer);
   renderGameBoard(computer);
   renderGameBoard(player);
 }
 
-// attackEvent = (element, player) => {
-//   let x = parseInt(element.getAttribute("data-x"));
-//   let y = parseInt(element.getAttribute("data-y"));
-//   console.log(player);
-// };
 export { initGame, player, computer };
